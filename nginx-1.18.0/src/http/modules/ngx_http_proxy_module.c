@@ -1055,7 +1055,7 @@ ngx_http_proxy_create_key(ngx_http_request_t *r)
     }
 
     // MY CODE
-    printf("create key key: ");
+    printf("--- ngx_http_proxy_create_key: ");
     for (size_t i = 0; i < key->len; i++)
         printf("%c", key->data[i]);
     printf("\n");
@@ -1063,7 +1063,6 @@ ngx_http_proxy_create_key(ngx_http_request_t *r)
 
     if (plcf->cache_key.value.data)
     {
-
         if (ngx_http_complex_value(r, &plcf->cache_key, key) != NGX_OK)
         {
             return NGX_ERROR;
@@ -1086,6 +1085,13 @@ ngx_http_proxy_create_key(ngx_http_request_t *r)
     {
         return NGX_ERROR;
     }
+
+    // MY CODE
+    printf("here1: ");
+    for (size_t i = 0; i < key->len; i++)
+        printf("%c", key->data[i]);
+    printf("\n");
+    // / MY CODE
 
     if (plcf->proxy_lengths && ctx->vars.uri.len)
     {
@@ -4421,7 +4427,7 @@ ngx_http_proxy_cache_key(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
     }
 
     // MY CODE
-    printf("config key scheme: ");
+    printf("--- ngx_http_proxy_cache_key: ");
     for (size_t i = 0; i < ccv.complex_value->value.len; i++)
         printf("%c", ccv.complex_value->value.data[i]);
     printf("\n");

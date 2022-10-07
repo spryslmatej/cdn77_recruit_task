@@ -1,3 +1,8 @@
+nginx-1.18.0/objs/*
+nginx-1.18.0/.vscode/*
+openresty-1.21.4.1/*
+
+
 # Prerequisites
 *.d
 
