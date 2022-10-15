@@ -1086,13 +1086,6 @@ ngx_http_proxy_create_key(ngx_http_request_t *r)
         return NGX_ERROR;
     }
 
-    // MY CODE
-    printf("here1: ");
-    for (size_t i = 0; i < key->len; i++)
-        printf("%c", key->data[i]);
-    printf("\n");
-    // / MY CODE
-
     if (plcf->proxy_lengths && ctx->vars.uri.len)
     {
 

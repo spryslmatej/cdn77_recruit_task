@@ -13,31 +13,31 @@ static ngx_int_t ngx_http_mymodule_handler(ngx_http_request_t *r)
     return NGX_DECLINED;
   }
 
-  printf("\n--- mymodule:\n");
+  // printf("\n--- mymodule:\n");
 
-  r->main->internal = 1;
+  // r->main->internal = 1;
 
-  ngx_table_elt_t *h;
-  h = ngx_list_push(&r->headers_out.headers);
-  h->hash = 1;
+  // ngx_table_elt_t *h;
+  // h = ngx_list_push(&r->headers_out.headers);
+  // h->hash = 1;
 
-  ngx_str_set(&h->key, "X-asdasd-Tutorial");
+  // ngx_str_set(&h->key, "X-asdasd-Tutorial");
 
-  if (!r->cache || !r->cache->key)
-    printf("cache was not set\n");
-  else
-  {
-    char hex[sizeof(r->cache->key)];
-    for (ulong i = 0; i < sizeof(r->cache->key); i++)
-      sprintf(hex + 2 * i, "%.2x", r->cache->key[i]);
+  // if (!r->cache || !r->cache->key)
+  //   printf("cache was not set\n");
+  // else
+  // {
+  //   char hex[sizeof(r->cache->key)];
+  //   for (ulong i = 0; i < sizeof(r->cache->key); i++)
+  //     sprintf(hex + 2 * i, "%.2x", r->cache->key[i]);
 
-    printf("%s\n", hex);
-    ngx_str_set(&h->value, hex);
-  }
+  //   printf("%s\n", hex);
+  //   // ngx_str_set(&h->value, hex);
+  // }
 
-  ngx_str_set(&h->value, "asdf World!");
+  // // ngx_str_set(&h->value, "asdf World!");
 
-  printf("\n");
+  // printf("\n");
 
   return NGX_DECLINED;
 }
@@ -49,9 +49,9 @@ static ngx_int_t ngx_http_mymodule_init(ngx_conf_t *cf)
 
   cmcf = ngx_http_conf_get_module_main_conf(cf, ngx_http_core_module);
 
-  // h = ngx_array_push(&cmcf->phases[NGX_HTTP_PRECONTENT_PHASE].handlers);
+  // h = ngx_array_push(&cmcf->phases[NGX_HTTP_CONTENT_PHASE].handlers);
   h = ngx_array_push(&cmcf->phases[NGX_HTTP_LOG_PHASE].handlers);
-  
+
   if (h == NULL)
   {
     return NGX_ERROR;
@@ -63,14 +63,14 @@ static ngx_int_t ngx_http_mymodule_init(ngx_conf_t *cf)
 }
 
 static ngx_http_module_t ngx_http_mymodule_module_ctx = {
-    NULL,                     /* preconfiguration */
+    NULL,                   /* preconfiguration */
     ngx_http_mymodule_init, /* postconfiguration */
-    NULL,                     /* create main configuration */
-    NULL,                     /* init main configuration */
-    NULL,                     /* create server configuration */
-    NULL,                     /* merge server configuration */
-    NULL,                     /* create location configuration */
-    NULL                      /* merge location configuration */
+    NULL,                   /* create main configuration */
+    NULL,                   /* init main configuration */
+    NULL,                   /* create server configuration */
+    NULL,                   /* merge server configuration */
+    NULL,                   /* create location configuration */
+    NULL                    /* merge location configuration */
 };
 
 ngx_module_t ngx_http_mymodule_module = {
